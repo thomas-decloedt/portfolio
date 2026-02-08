@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Experience from "../components/Experience.astro";
+import Education from "../components/Education.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <Hero />
+    <About />
+    <Experience />
+    <Education />
+    <Projects />
+    <Contact />
+  </main>
+  <footer class="border-t border-neutral-200 py-8">
+    <div
+      class="mx-auto max-w-3xl px-4 sm:px-6 text-center text-sm text-neutral-500"
+    >
+      © {new Date().getFullYear()} Thomas René Decloedt
+    </div>
+  </footer>
+</BaseLayout>

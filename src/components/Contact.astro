@@ -1,0 +1,97 @@
+---
+const email = "thomas.r.decloedt@gmail.com";
+const github = "https://github.com/thomas-decloedt";
+const linkedin = "https://www.linkedin.com/in/thomasdecloedt";
+const huggingface = "https://huggingface.co/thomas-decloedt";
+const substack = "https://thomasdecloedt.substack.com";
+const elsewhere = [
+  { label: "Spotify", href: "https://open.spotify.com/user/thomas.decloedt" },
+  { label: "Letterboxd", href: "https://letterboxd.com/thomasdc/" },
+  { label: "Rate Your Music", href: "https://rateyourmusic.com/~thomasdc" },
+];
+---
+
+<section class="py-16 sm:py-20 border-t border-neutral-200" id="contact">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-neutral-900">Contact</h2>
+    <p class="mt-4 text-neutral-600 max-w-prose">
+      You can reach me via LinkedIn or email.
+    </p>
+    <div class="mt-8 flex flex-wrap gap-6">
+      <a
+        href={`mailto:${email}`}
+        data-track-label="Email"
+        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-neutral-900 hover:text-neutral-600 font-medium underline underline-offset-4"
+      >
+        {email}
+      </a>
+      <a
+        href={github}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-label="GitHub"
+        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-neutral-900 hover:text-neutral-600 font-medium underline underline-offset-4"
+      >
+        GitHub
+      </a>
+      <a
+        href={linkedin}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-label="LinkedIn"
+        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-neutral-900 hover:text-neutral-600 font-medium underline underline-offset-4"
+      >
+        LinkedIn
+      </a>
+      <a
+        href={huggingface}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-label="Hugging Face"
+        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-neutral-900 hover:text-neutral-600 font-medium underline underline-offset-4"
+      >
+        Hugging Face
+      </a>
+      <a
+        href={substack}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-track-label="Substack"
+        class="inline-flex items-center justify-center min-h-[44px] min-w-[44px] text-neutral-900 hover:text-neutral-600 font-medium underline underline-offset-4"
+      >
+        Substack
+      </a>
+    </div>
+    <p class="mt-8 text-sm text-neutral-500">
+      Elsewhere: {
+        elsewhere.map(({ label, href }, i) => (
+          <>
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-track-label={label}
+              class="text-neutral-500 hover:text-neutral-700 underline underline-offset-2"
+            >
+              {label}
+            </a>
+            {i < elsewhere.length - 1 ? " · " : ""}
+          </>
+        ))
+      }
+    </p>
+  </div>
+</section>
+
+<script>
+  import { track } from "@vercel/analytics";
+
+  document.querySelectorAll("#contact a[data-track-label]").forEach((link) => {
+    link.addEventListener("click", () => {
+      track("Outbound Click", {
+        label: link.getAttribute("data-track-label"),
+        url: link.getAttribute("href"),
+      });
+    });
+  });
+</script>
